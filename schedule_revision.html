@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Revision</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #174a8b;
+        }
+
+        .back {
+            color: #2878e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #174a8b;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            background: white;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .offline {
+            background: #eaf4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #174a8b;
+            font-weight: bold;
+        }
+
+        .btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #2878e8;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1768d0;
+        }
+
+        .success {
+            background: #e8f7ee;
+            color: #1b7a3d;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo">
+            📖 Doubt & Revision Support System
+        </div>
+
+        <a href="/common-doubts" class="back">
+            ← Common Doubts
+        </a>
+
+    </div>
+
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <div class="card">
+
+            <!-- SUCCESS MESSAGE -->
+            {% if message %}
+            <div class="success">
+                ✅ {{ message }}
+            </div>
+            {% endif %}
+
+
+            <form method="POST" action="/schedule-revision">
+
+                <h1>📅 Schedule Revision Session</h1>
+
+                <p class="subtitle">
+                    Organize an offline classroom revision session.
+                </p>
+
+
+                <!-- OFFLINE NOTICE -->
+                <div class="offline">
+                    🏫 This is an offline classroom revision session.
+                </div>
+
+
+                <!-- SUBJECT -->
+                <label>Subject</label>
+
+                <input
+                    type="text"
+                    name="subject"
+                    value="Data Structures"
+                    readonly
+                >
+
+
+                <!-- CHAPTER -->
+                <label>Chapter</label>
+
+                <select name="chapter" id="chapter" required>
+
+                    <option value="">
+                        Select Chapter
+                    </option>
+
+                    <option value="Chapter 1 - Introduction to Data Structures">
+                        Chapter 1 - Introduction to Data Structures
+                    </option>
+
+                    <option value="Chapter 2 - Stacks and Queues">
+                        Chapter 2 - Stacks and Queues
+                    </option>
+
+                    <option value="Chapter 3 - Linked Representation">
+                        Chapter 3 - Linked Representation
+                    </option>
+
+                    <option value="Chapter 4 - Trees">
+                        Chapter 4 - Trees
+                    </option>
+
+                    <option value="Chapter 5 - Graphs">
+                        Chapter 5 - Graphs
+                    </option>
+
+                    <option value="Chapter 6 - Sorting and Searching">
+                        Chapter 6 - Sorting and Searching
+                    </option>
+
+                </select>
+
+
+                <!-- TOPIC -->
+                <label>Topic</label>
+
+                <select name="topic" id="topic" required>
+
+                    <option value="">
+                        Select Topic
+                    </option>
+
+                </select>
+
+
+                <!-- DATE -->
+                <label>Revision Date</label>
+
+                <input
+                    type="date"
+                    name="date"
+                    required
+                >
+
+
+                <!-- TIME -->
+                <label>Revision Time</label>
+
+                <input
+                    type="time"
+                    name="time"
+                    required
+                >
+
+
+                <!-- ROOM -->
+                <label>Classroom / Room</label>
+
+                <input
+                    type="text"
+                    name="room"
+                    placeholder="Example: Room 204"
+                    required
+                >
+
+
+                <!-- NOTES -->
+                <label>Notes for Students</label>
+
+                <textarea
+                    name="notes"
+                    placeholder="Enter important points or instructions..."
+                ></textarea>
+
+
+                <!-- BUTTON -->
+                <button type="submit" class="btn">
+                    Schedule Revision Session
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- DYNAMIC TOPICS -->
+    <script>
+
+        const topics = {
+
+            "Chapter 1 - Introduction to Data Structures": [
+
+                "Data and Information",
+
+                "Abstract Data Types (ADT) - Definition",
+                "Abstract Data Types (ADT) - Basics",
+                "Abstract Data Types (ADT) - Importance",
+
+                "Data Structures - Definition",
+                "Data Structures - Classification",
+                "Linear Data Structure",
+                "Non-Linear Data Structure",
+
+                "Implementation aspects",
+
+                "Memory Representation",
+
+                "Examples and Applications of Data Structures",
+
+                "Introduction to Linear Data Structure",
+
+                "Array",
+
+                "Array Operations"
+
+            ],
+
+
+            "Chapter 2 - Stacks and Queues": [
+
+                "Stack - Definition",
+                "Stack Terminology",
+                "Memory Representation of Stack",
+
+                "Push",
+                "Pop",
+                "Peek",
+                "Empty",
+                "Full",
+
+                "Implementation of Stack using Arrays",
+
+                "Applications of Stack",
+
+                "Recursion",
+
+                "Polish Notation",
+                "Infix",
+                "Prefix",
+                "Postfix",
+
+                "Conversion of expressions",
+
+                "Evaluation of expressions",
+
+                "Reverse-Polish Notation",
+
+                "Queue - Definition",
+                "Queue Terminology",
+                "Memory Representation",
+                "Operations on Queue",
+                "Implementation using Array",
+                "Types of Queues",
+                "Applications of Queues"
+
+            ],
+
+
+            "Chapter 3 - Linked Representation": [
+
+                "Concept of Dynamic Memory Allocation",
+
+                "Linked List - Definition",
+                "Linked List - Memory Representation",
+
+                "Importance of Linked List",
+
+                "Singly Linked List",
+                "Doubly Linked List",
+                "Circular Linked List",
+
+                "Operations on Linked Lists",
+
+                "Applications of Linked List",
+
+                "Polynomial Manipulation"
+
+            ],
+
+
+            "Chapter 4 - Trees": [
+
+                "Tree - Basic Terminology",
+
+                "Binary Tree - Definition",
+
+                "Complete Binary Tree",
+                "Almost Complete Binary Tree",
+                "Strictly Binary Tree",
+
+                "Binary Search Tree (BST) - Definition",
+                "Binary Search Tree (BST) - Insertion",
+                "Binary Search Tree (BST) - Deletion",
+                "Binary Search Tree (BST) - Searching",
+
+                "In-order",
+                "Pre-order",
+                "Post-order",
+                "Level-order",
+
+                "Height Balanced Tree",
+
+                "AVL Tree - Importance",
+
+                "Left Rotation",
+                "Right Rotation",
+                "Left-Right Rotation",
+                "Right-Left Rotation",
+
+                "Constructing an AVL Tree",
+
+                "B-Tree",
+                "B+ Tree",
+                "Threaded Binary Tree"
+
+            ],
+
+
+            "Chapter 5 - Graphs": [
+
+                "Graphs - Basic Terminology",
+
+                "Representing Graphs in Memory",
+
+                "BFS - Breadth First Search",
+
+                "DFS - Depth First Search",
+
+                "Minimum Spanning Tree (MST) - Definition",
+
+                "Kruskal's Algorithm",
+
+                "Prim's Algorithm"
+
+            ],
+
+
+            "Chapter 6 - Sorting and Searching": [
+
+                "Bubble Sort",
+
+                "Selection Sort",
+
+                "Insertion Sort",
+
+                "Heap Sort",
+
+                "Radix Sort",
+
+                "Linear Search",
+
+                "Binary Search",
+
+                "Hashing - Concept",
+
+                "Examples",
+
+                "Collision",
+
+                "Collision Resolution"
+
+            ]
+
+        };
+
+
+        const chapterSelect = document.getElementById("chapter");
+
+        const topicSelect = document.getElementById("topic");
+
+
+        chapterSelect.addEventListener("change", function () {
+
+            const selectedChapter = this.value;
+
+
+            topicSelect.innerHTML =
+                '<option value="">Select Topic</option>';
+
+
+            if (topics[selectedChapter]) {
+
+                topics[selectedChapter].forEach(function (topic) {
+
+                    const option = document.createElement("option");
+
+                    option.value = topic;
+
+                    option.textContent = topic;
+
+                    topicSelect.appendChild(option);
+
+                });
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

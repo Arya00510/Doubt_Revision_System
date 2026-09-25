@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doubt Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #174a8b;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: #174a8b;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .label {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .doubt-box {
+            background: #f4f7fc;
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .response {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eaf4ff;
+            border-left: 5px solid #2878e8;
+            border-radius: 8px;
+        }
+
+        .response h3 {
+            margin-top: 0;
+            color: #174a8b;
+        }
+
+        .pending {
+            color: #856404;
+            font-weight: bold;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            background: #2878e8;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">📖 Doubt & Revision Support System</div>
+    </div>
+
+    <div class="container">
+
+        <h1>📚 Doubt Details</h1>
+
+        <div class="card">
+
+            <div class="row">
+
+                <div class="item">
+                    <div class="label">Subject</div>
+                    <div class="value">{{ doubt[1] }}</div>
+                </div>
+
+                <div class="item">
+                    <div class="label">Chapter</div>
+                    <div class="value">{{ doubt[2] }}</div>
+                </div>
+
+                <div class="item">
+                    <div class="label">Topic</div>
+                    <div class="value">{{ doubt[3] }}</div>
+                </div>
+
+            </div>
+
+            <div class="label">Your Doubt</div>
+
+            <div class="doubt-box">
+                {{ doubt[4] }}
+            </div>
+
+            <div class="response">
+
+                <h3>👨‍🏫 Teacher Response</h3>
+
+                <p class="pending">
+                    Your teacher will review this doubt.
+                </p>
+
+                <p>
+                    If this is a common doubt, it may be included
+                    in the upcoming offline revision session.
+                </p>
+
+            </div>
+
+            <a href="/my-doubts" class="back">
+                ← Back to My Doubts
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

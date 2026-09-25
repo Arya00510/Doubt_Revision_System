@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Doubts</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #174a8b;
+        }
+
+        .back {
+            color: #2878e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: #174a8b;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .doubt-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .label {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .doubt-text {
+            background: #f4f7fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            color: #444;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: #fff3cd;
+            color: #856404;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .empty {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 14px;
+            color: #666;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">📖 Doubt & Revision Support System</div>
+
+        <a href="/student-dashboard" class="back">
+            ← Dashboard
+        </a>
+    </div>
+
+    <div class="container">
+
+        <h1>📚 My Doubts</h1>
+
+        <p class="subtitle">
+            View your submitted doubts and their current status.
+        </p>
+
+        {% if doubts %}
+
+            {% for doubt in doubts %}
+
+            <div class="doubt-card">
+
+                <div class="row">
+
+                    <div class="item">
+                        <div class="label">Subject</div>
+                        <div class="value">{{ doubt[1] }}</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="label">Chapter</div>
+                        <div class="value">{{ doubt[2] }}</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="label">Topic</div>
+                        <div class="value">{{ doubt[3] }}</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="label">Status</div>
+                        <span class="status">Pending</span>
+                    </div>
+
+                </div>
+
+                <div class="label">Your Doubt</div>
+
+                <div class="doubt-text">
+                    {{ doubt[4] }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+                <h2>📭 No Doubts Submitted Yet</h2>
+                <p>Your submitted doubts will appear here.</p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

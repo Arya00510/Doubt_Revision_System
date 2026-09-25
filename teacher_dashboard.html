@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #174a8b;
+        }
+
+        .logout {
+            color: #2878e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            color: #174a8b;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+        }
+
+        .subject-box {
+            background: #eaf4ff;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2878e8;
+        }
+
+        .subject-box span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .subject-box h2 {
+            margin: 5px 0 0;
+            color: #174a8b;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: #174a8b;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 18px;
+            background: #2878e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            📖 Doubt & Revision Support System
+        </div>
+
+        <a href="/" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+    <div class="container">
+
+        <div class="welcome">
+
+            <h1>👨‍🏫 Welcome, Teacher</h1>
+
+            <p>
+                Manage student doubts and organize focused revision sessions.
+            </p>
+
+        </div>
+
+        <div class="subject-box">
+
+            <span>Assigned Subject</span>
+
+            <h2>Data Structures</h2>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icon">📝</div>
+
+                <h2>Student Doubts</h2>
+
+                <p>
+                    View and manage doubts submitted by students
+                    from your assigned subject.
+                </p>
+
+                <a href="/teacher-doubts" class="btn">
+                     View Doubts
+                 </a>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🔍</div>
+
+                <h2>Common Doubts</h2>
+
+                <p>
+                    Identify frequently asked doubts and topics
+                    that need focused revision.
+                </p>
+
+                <a href="/common-doubts" class="btn">Analyze Doubts</a>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">📅</div>
+
+                <h2>Revision Session</h2>
+
+                <p>
+                    Schedule an offline classroom revision session
+                    for important common doubts.
+                </p>
+
+                <a href="/schedule-revision" class="btn">Schedule Session</a>
+                    
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

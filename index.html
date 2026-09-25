@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doubt & Revision Support System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #10265f;
+            background: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #e5edf7;
+            background: white;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 42px;
+        }
+
+        .brand h2 {
+            font-size: 23px;
+        }
+
+        .brand span {
+            color: #52617d;
+            font-size: 14px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            padding: 10px 0;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #176cf0;
+            border-bottom: 3px solid #176cf0;
+        }
+
+        .badge {
+            background: #eaf5ff;
+            padding: 10px 18px;
+            border-radius: 18px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 520px;
+            padding: 55px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background: linear-gradient(120deg, #f7fbff, #e9f3ff);
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .eyebrow {
+            color: #2165b8;
+            letter-spacing: 4px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            line-height: 1.05;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #176cf0;
+        }
+
+        .intro {
+            color: #3e4d6b;
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            color: white;
+            padding: 16px 25px;
+            border-radius: 35px;
+            font-weight: bold;
+            min-width: 220px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .student {
+            background: #2675dc;
+        }
+
+        .teacher {
+            background: #1ba465;
+        }
+
+        /* HERO IMAGE AREA */
+
+        .visual {
+            width: 45%;
+            height: 360px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scene {
+            width: 75%;
+            height: 310px;
+            border-radius: 40% 45% 20% 35%;
+            background: #dcecff;
+            position: relative;
+        }
+
+        .person {
+            position: absolute;
+            font-size: 95px;
+            bottom: 65px;
+        }
+
+        .student-person {
+            left: 14%;
+        }
+
+        .teacher-person {
+            right: 12%;
+        }
+
+        .laptop {
+            position: absolute;
+            font-size: 75px;
+            bottom: 10px;
+            left: 37%;
+        }
+
+        .words {
+            position: absolute;
+            left: 0;
+            top: 30px;
+            font-size: 20px;
+            line-height: 1.5;
+            transform: rotate(-7deg);
+        }
+
+        .idea {
+            position: absolute;
+            right: 0;
+            top: 25px;
+            background: white;
+            border: 1px solid #8ca1c2;
+            padding: 15px;
+            border-radius: 14px;
+            line-height: 1.5;
+        }
+
+        /* HOW IT WORKS */
+
+        .workflow {
+            text-align: center;
+            padding: 35px 5% 55px;
+        }
+
+        .workflow h2 {
+            font-size: 34px;
+        }
+
+        .workflow > p {
+            margin: 8px 0 28px;
+            color: #58647a;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .step {
+            min-height: 190px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .blue {
+            background: #eef7ff;
+        }
+
+        .green {
+            background: #eefaf4;
+        }
+
+        .orange {
+            background: #fff7ec;
+        }
+
+        .purple {
+            background: #f5f0ff;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #d8ebff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step-icon {
+            font-size: 34px;
+            margin: 5px 0;
+        }
+
+        .step h3 {
+            color: #111;
+            margin: 8px 0;
+        }
+
+        .step p {
+            color: #4e5970;
+            line-height: 1.5;
+        }
+
+        /* ABOUT */
+
+        .about {
+            padding: 55px 8%;
+            text-align: center;
+            background: #f8fbff;
+        }
+
+        .about h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            color: #4d5870;
+            line-height: 1.6;
+        }
+
+        /* FEATURES */
+
+        .features {
+            padding: 50px 8%;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 32px;
+            margin-bottom: 22px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .feature-list span {
+            padding: 14px 20px;
+            border: 1px solid #d9e7f7;
+            border-radius: 12px;
+            background: #f8fbff;
+        }
+
+        /* QUOTE */
+
+        .quote {
+            margin: 25px 6%;
+            padding: 25px;
+            background: #eaf4ff;
+            border-radius: 18px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #142b59;
+            color: white;
+            padding: 30px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            color: #dce7f8;
+            margin-top: 5px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 1000px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+            }
+
+            .hero-content,
+            .visual {
+                width: 100%;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .badge {
+                display: none;
+            }
+
+            .hero {
+                padding: 40px 5%;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="navbar">
+
+        <a href="#home" class="brand">
+
+            <div class="logo">📖</div>
+
+            <div>
+                <h2>Doubt & Revision</h2>
+                <span>Support System</span>
+            </div>
+
+        </a>
+
+        <nav>
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#how">How It Works</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+        <div class="badge">
+            🎓 Better Doubts<br>
+            <b>Brighter Future</b>
+        </div>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                LEARN • ASK • CLEAR • GROW
+            </p>
+
+            <h1>
+                Doubt and Revision<br>
+                <span>Support System</span>
+            </h1>
+
+            <p class="intro">
+
+                A simple platform where students can submit
+                chapter-wise doubts and teachers can identify
+                common difficulties and conduct focused
+                offline revision sessions.
+
+            </p>
+
+            <div class="buttons">
+
+                <a href="/student-login"class="btn student">
+                    👨‍🎓 Student Login
+                    <span>→</span>
+                </a>
+
+                <a href="/teacher-login" class="btn teacher">
+                    👩‍🏫 Teacher Login
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="visual">
+
+            <div class="words">
+                Ask<br>
+                Learn<br>
+                Revise<br>
+                <b>Succeed</b>
+            </div>
+
+            <div class="scene">
+
+                <div class="person student-person">
+                    👨‍🎓
+                </div>
+
+                <div class="person teacher-person">
+                    👩‍🏫
+                </div>
+
+                <div class="laptop">
+                    💻
+                </div>
+
+            </div>
+
+            <div class="idea">
+
+                💡<br>
+
+                <b>
+                    Same Questions<br>
+                    Better Understanding<br>
+                    Stronger You
+                </b>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section id="how" class="workflow">
+
+        <h2>How It Works?</h2>
+
+        <p>
+            A simple process for a smarter learning experience
+        </p>
+
+        <div class="steps">
+
+            <div class="step blue">
+
+                <div class="step-number">1</div>
+
+                <div class="step-icon">💬</div>
+
+                <h3>Submit Your Doubt</h3>
+
+                <p>
+                    Submit your doubt with subject,
+                    chapter and topic.
+                </p>
+
+            </div>
+
+
+            <div class="step green">
+
+                <div class="step-number">2</div>
+
+                <div class="step-icon">👩‍🏫</div>
+
+                <h3>Teacher Reviews</h3>
+
+                <p>
+                    Teachers identify common
+                    and important doubts.
+                </p>
+
+            </div>
+
+
+            <div class="step orange">
+
+                <div class="step-number">3</div>
+
+                <div class="step-icon">🏫</div>
+
+                <h3>Offline Revision Session</h3>
+
+                <p>
+                    Attend a focused classroom
+                    session for the selected topic.
+                </p>
+
+            </div>
+
+
+            <div class="step purple">
+
+                <div class="step-number">4</div>
+
+                <div class="step-icon">📈</div>
+
+                <h3>Doubt Resolved & Learn</h3>
+
+                <p>
+                    Clear concepts and improve
+                    understanding.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about" class="about">
+
+        <h2>About the System</h2>
+
+        <p>
+
+            The system helps schools organize student
+            doubts chapter-wise and supports teachers
+            in planning focused offline revision sessions.
+
+        </p>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section id="features" class="features">
+
+        <h2>Key Features</h2>
+
+        <div class="feature-list">
+
+            <span>✓ Chapter-wise Doubts</span>
+
+            <span>✓ Subject-wise Teacher Assignment</span>
+
+            <span>✓ Common Doubt Identification</span>
+
+            <span>✓ Offline Revision Scheduling</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUOTE -->
+
+    <div class="quote">
+
+        “A doubt cleared today can build
+        better understanding tomorrow.”
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer id="contact">
+
+        <div>
+
+            <h3>
+                Doubt & Revision Support System
+            </h3>
+
+            <p>
+                Empowering Students. Enabling Teachers.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

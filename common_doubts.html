@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Common Doubts</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #174a8b;
+        }
+
+        .back {
+            color: #2878e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #174a8b;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .subject-box {
+            background: #eaf4ff;
+            padding: 18px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 5px solid #2878e8;
+        }
+
+        .subject-box span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .subject-box h2 {
+            margin: 5px 0 0;
+            color: #174a8b;
+        }
+
+        .topic-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topic-info h2 {
+            margin: 0 0 8px;
+            color: #174a8b;
+        }
+
+        .chapter {
+            color: #2878e8;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .topic-info p {
+            margin: 0;
+            color: #666;
+        }
+
+        .count {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .empty {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 14px;
+            color: #666;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 20px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .topic-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .count {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            📖 Doubt & Revision Support System
+        </div>
+
+        <a href="/teacher-dashboard" class="back">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <h1>🔍 Common Doubts Analysis</h1>
+
+        <p class="subtitle">
+            Identify chapters and topics that need focused revision.
+        </p>
+
+
+        <div class="subject-box">
+
+            <span>Assigned Subject</span>
+
+            <h2>Data Structures</h2>
+
+        </div>
+
+
+        {% if common_doubts %}
+
+            {% for doubt in common_doubts %}
+
+            <div class="topic-card">
+
+                <div class="topic-info">
+
+                    <div class="chapter">
+                        📘 {{ doubt[0] }}
+                    </div>
+
+                    <h2>
+                        📚 {{ doubt[1] }}
+                    </h2>
+
+                    <p>
+                        This topic has {{ doubt[2] }} student doubt(s).
+                    </p>
+
+                </div>
+
+
+                <div class="count">
+                    {{ doubt[2] }} Doubts
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <div class="empty">
+
+                <h2>📭 No Common Doubts Yet</h2>
+
+                <p>
+                    No doubts have been submitted for Data Structures.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+</body>
+
+</html>

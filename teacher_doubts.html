@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Doubts</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #174a8b;
+        }
+
+        .back {
+            color: #2878e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #174a8b;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .doubt-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .label {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .doubt-box {
+            background: #f4f7fc;
+            padding: 16px;
+            border-radius: 9px;
+            margin-top: 8px;
+            color: #333;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .reviewed {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .resolved {
+            background: #e8f7ee;
+            color: #1b7a3d;
+        }
+
+        .actions {
+            margin-top: 18px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 9px 15px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .review-btn {
+            background: #2878e8;
+        }
+
+        .resolve-btn {
+            background: #2e9d61;
+        }
+
+        .empty {
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 14px;
+            color: #666;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            📖 Doubt & Revision Support System
+        </div>
+
+        <a href="/teacher-dashboard" class="back">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <h1>📝 Student Doubts</h1>
+
+        <p class="subtitle">
+            Data Structures — View doubts submitted by students.
+        </p>
+
+
+        {% if doubts %}
+
+            {% for doubt in doubts %}
+
+            <div class="doubt-card">
+
+                <div class="row">
+
+                    <div class="item">
+                        <div class="label">Subject</div>
+                        <div class="value">
+                            {{ doubt[1] }}
+                        </div>
+                    </div>
+
+
+                    <div class="item">
+                        <div class="label">Chapter</div>
+                        <div class="value">
+                            {{ doubt[2] }}
+                        </div>
+                    </div>
+
+
+                    <div class="item">
+                        <div class="label">Topic</div>
+                        <div class="value">
+                            {{ doubt[3] }}
+                        </div>
+                    </div>
+
+
+                    <div class="item">
+
+                        <div class="label">
+                            Status
+                        </div>
+
+                        {% if doubt[5] == "Resolved" %}
+
+                            <span class="status resolved">
+                                🟢 Resolved
+                            </span>
+
+                        {% elif doubt[5] == "Reviewed" %}
+
+                            <span class="status reviewed">
+                                🔵 Reviewed
+                            </span>
+
+                        {% else %}
+
+                            <span class="status pending">
+                                🟡 Pending
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="label">
+                    Student Doubt
+                </div>
+
+                <div class="doubt-box">
+                    {{ doubt[4] }}
+                </div>
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="actions">
+
+                    {% if doubt[5] == "Pending" %}
+
+                    <form method="POST"
+                          action="/update-doubt-status/{{ doubt[0] }}">
+
+                        <input type="hidden"
+                               name="status"
+                               value="Reviewed">
+
+                        <button type="submit"
+                                class="btn review-btn">
+                            Mark as Reviewed
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+
+                    {% if doubt[5] != "Resolved" %}
+
+                    <form method="POST"
+                          action="/update-doubt-status/{{ doubt[0] }}">
+
+                        <input type="hidden"
+                               name="status"
+                               value="Resolved">
+
+                        <button type="submit"
+                                class="btn resolve-btn">
+                            Mark as Resolved
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <div class="empty">
+
+                <h2>📭 No Doubts Found</h2>
+
+                <p>
+                    No student doubts have been submitted for
+                    Data Structures yet.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

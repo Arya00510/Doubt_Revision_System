@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Doubt</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8ff;
+            color: #173b78;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .back {
+            color: #2878e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            color: #173b78;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2878e8;
+        }
+
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2878e8;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #1765d1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            📖 Doubt & Revision Support System
+        </div>
+
+        <a href="/student-dashboard" class="back">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h1>❓ Submit Your Doubt</h1>
+
+            <p class="subtitle">
+                Select the subject, chapter and topic, then describe your doubt.
+            </p>
+
+
+            <form method="POST" action="/submit-doubt">
+
+
+                <!-- SUBJECT -->
+
+                <label>Subject</label>
+
+                <select name="subject" required>
+
+                    <option value="">
+                        Select Subject
+                    </option>
+
+                    <option value="Data Structures">
+                        Data Structures
+                    </option>
+
+                </select>
+
+
+                <!-- CHAPTER -->
+
+                <label>Chapter</label>
+
+                <select name="chapter" id="chapter" required>
+
+                    <option value="">
+                        Select Chapter
+                    </option>
+
+                    <option value="Chapter 1 - Introduction to Data Structures">
+                        Chapter 1 - Introduction to Data Structures
+                    </option>
+
+                    <option value="Chapter 2 - Stacks and Queues">
+                        Chapter 2 - Stacks and Queues
+                    </option>
+
+                    <option value="Chapter 3 - Linked Representation">
+                        Chapter 3 - Linked Representation
+                    </option>
+
+                    <option value="Chapter 4 - Trees">
+                        Chapter 4 - Trees
+                    </option>
+
+                    <option value="Chapter 5 - Graphs">
+                        Chapter 5 - Graphs
+                    </option>
+
+                    <option value="Chapter 6 - Sorting and Searching">
+                        Chapter 6 - Sorting and Searching
+                    </option>
+
+                </select>
+
+
+                <!-- TOPIC -->
+
+                <label>Topic</label>
+
+                <select name="topic" id="topic" required>
+
+                    <option value="">
+                        Select Topic
+                    </option>
+
+                </select>
+
+
+                <!-- DOUBT -->
+
+                <label>Your Doubt</label>
+
+                <textarea
+                    name="doubt"
+                    placeholder="Write your doubt here..."
+                    required
+                ></textarea>
+
+
+                <!-- BUTTON -->
+
+                <button type="submit" class="submit-btn">
+                    Submit Doubt
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- DYNAMIC TOPICS -->
+
+    <script>
+
+        const topics = {
+
+            "Chapter 1 - Introduction to Data Structures": [
+
+                "Data and Information",
+
+                "Abstract Data Types (ADT) - Definition",
+                "Abstract Data Types (ADT) - Basics",
+                "Abstract Data Types (ADT) - Importance",
+
+                "Data Structures - Definition",
+                "Data Structures - Classification",
+                "Linear Data Structure",
+                "Non-Linear Data Structure",
+
+                "Implementation aspects",
+
+                "Memory Representation",
+
+                "Examples and Applications of Data Structures",
+
+                "Introduction to Linear Data Structure",
+
+                "Array",
+
+                "Array Operations"
+
+            ],
+
+
+            "Chapter 2 - Stacks and Queues": [
+
+                "Stack - Definition",
+                "Stack Terminology",
+                "Memory Representation of Stack",
+
+                "Push",
+                "Pop",
+                "Peek",
+                "Empty",
+                "Full",
+
+                "Implementation of Stack using Arrays",
+
+                "Applications of Stack",
+
+                "Recursion",
+
+                "Polish Notation",
+                "Infix",
+                "Prefix",
+                "Postfix",
+
+                "Conversion of expressions",
+
+                "Evaluation of expressions",
+
+                "Reverse-Polish Notation",
+
+                "Queue - Definition",
+                "Queue Terminology",
+                "Memory Representation",
+                "Operations on Queue",
+                "Implementation using Array",
+                "Types of Queues",
+                "Applications of Queues"
+
+            ],
+
+
+            "Chapter 3 - Linked Representation": [
+
+                "Concept of Dynamic Memory Allocation",
+
+                "Linked List - Definition",
+                "Linked List - Memory Representation",
+
+                "Importance of Linked List",
+
+                "Singly Linked List",
+                "Doubly Linked List",
+                "Circular Linked List",
+
+                "Operations on Linked Lists",
+
+                "Applications of Linked List",
+
+                "Polynomial Manipulation"
+
+            ],
+
+
+            "Chapter 4 - Trees": [
+
+                "Tree - Basic Terminology",
+
+                "Binary Tree - Definition",
+
+                "Complete Binary Tree",
+                "Almost Complete Binary Tree",
+                "Strictly Binary Tree",
+
+                "Binary Search Tree (BST) - Definition",
+                "Binary Search Tree (BST) - Insertion",
+                "Binary Search Tree (BST) - Deletion",
+                "Binary Search Tree (BST) - Searching",
+
+                "In-order",
+                "Pre-order",
+                "Post-order",
+                "Level-order",
+
+                "Height Balanced Tree",
+
+                "AVL Tree - Importance",
+
+                "Left Rotation",
+                "Right Rotation",
+                "Left-Right Rotation",
+                "Right-Left Rotation",
+
+                "Constructing an AVL Tree",
+
+                "B-Tree",
+                "B+ Tree",
+                "Threaded Binary Tree"
+
+            ],
+
+
+            "Chapter 5 - Graphs": [
+
+                "Graphs - Basic Terminology",
+
+                "Representing Graphs in Memory",
+
+                "BFS - Breadth First Search",
+
+                "DFS - Depth First Search",
+
+                "Minimum Spanning Tree (MST) - Definition",
+
+                "Kruskal's Algorithm",
+
+                "Prim's Algorithm"
+
+            ],
+
+
+            "Chapter 6 - Sorting and Searching": [
+
+                "Bubble Sort",
+
+                "Selection Sort",
+
+                "Insertion Sort",
+
+                "Heap Sort",
+
+                "Radix Sort",
+
+                "Linear Search",
+
+                "Binary Search",
+
+                "Hashing - Concept",
+
+                "Examples",
+
+                "Collision",
+
+                "Collision Resolution"
+
+            ]
+
+        };
+
+
+        const chapterSelect =
+            document.getElementById("chapter");
+
+        const topicSelect =
+            document.getElementById("topic");
+
+
+        chapterSelect.addEventListener(
+            "change",
+            function () {
+
+                const selectedChapter =
+                    this.value;
+
+
+                topicSelect.innerHTML =
+                    '<option value="">Select Topic</option>';
+
+
+                if (topics[selectedChapter]) {
+
+                    topics[selectedChapter].forEach(
+                        function (topic) {
+
+                            const option =
+                                document.createElement("option");
+
+                            option.value = topic;
+
+                            option.textContent = topic;
+
+                            topicSelect.appendChild(option);
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
