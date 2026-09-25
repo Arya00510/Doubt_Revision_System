@@ -96,6 +96,19 @@
             color: #795600;
         }
 
+        .no-session {
+            background: #f8faff;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            color: #666;
+        }
+
+        .no-session h2 {
+            color: #174a8b;
+        }
+
     </style>
 
 </head>
@@ -127,116 +140,137 @@
             </p>
 
 
-            <div class="offline">
-                🏫 Offline Classroom Revision Session
-            </div>
+            {% if session %}
 
-
-            <!-- SUBJECT -->
-
-            <div class="info">
-
-                <div class="label">
-                    Subject
+                <div class="offline">
+                    🏫 Offline Classroom Revision Session
                 </div>
 
-                <div class="value">
-                    {{ session[1] }}
+
+                <!-- SUBJECT -->
+
+                <div class="info">
+
+                    <div class="label">
+                        Subject
+                    </div>
+
+                    <div class="value">
+                        {{ session[1] }}
+                    </div>
+
                 </div>
 
-            </div>
 
+                <!-- CHAPTER -->
 
-            <!-- CHAPTER -->
+                <div class="info">
 
-            <div class="info">
+                    <div class="label">
+                        Chapter
+                    </div>
 
-                <div class="label">
-                    Chapter
+                    <div class="value">
+                        {{ session[7] }}
+                    </div>
+
                 </div>
 
-                <div class="value">
-                    {{ session[7] }}
+
+                <!-- TOPIC -->
+
+                <div class="info">
+
+                    <div class="label">
+                        Topic
+                    </div>
+
+                    <div class="value">
+                        {{ session[2] }}
+                    </div>
+
                 </div>
 
-            </div>
 
+                <!-- DATE -->
 
-            <!-- TOPIC -->
+                <div class="info">
 
-            <div class="info">
+                    <div class="label">
+                        Revision Date
+                    </div>
 
-                <div class="label">
-                    Topic
+                    <div class="value">
+                        {{ session[3].split('-')[2] }}
+                        {{
+                            ['January','February','March','April','May','June',
+                             'July','August','September','October','November','December']
+                            [session[3].split('-')[1]|int - 1]
+                        }}
+                        {{ session[3].split('-')[0] }}
+                    </div>
+
                 </div>
 
-                <div class="value">
-                    {{ session[2] }}
+
+                <!-- TIME -->
+
+                <div class="info">
+
+                    <div class="label">
+                        Revision Time
+                    </div>
+
+                    <div class="value">
+                        {{ session[4] }}
+                    </div>
+
                 </div>
 
-            </div>
 
+                <!-- ROOM -->
 
-            <!-- DATE -->
+                <div class="info">
 
-            <div class="info">
+                    <div class="label">
+                        Classroom / Room
+                    </div>
 
-                <div class="label">
-                    Revision Date
+                    <div class="value">
+                        {{ session[5] }}
+                    </div>
+
                 </div>
 
-                <div class="value">
-                <div class="value">
-    {{ session[3].split('-')[2] }} {{ 
-        ['January','February','March','April','May','June',
-         'July','August','September','October','November','December']
-        [session[3].split('-')[1]|int - 1]
-    }} {{ session[3].split('-')[0] }}
-</div>
+
+                <!-- NOTES -->
+
+                <div class="note">
+
+                    📝 <strong>Important:</strong>
+
+                    {{ session[6] }}
+
                 </div>
 
-            </div>
 
+            {% else %}
 
-            <!-- TIME -->
+                <div class="no-session">
 
-            <div class="info">
+                    <h2>📭 No Revision Session Scheduled</h2>
 
-                <div class="label">
-                    Revision Time
+                    <p>
+                        Your teacher has not scheduled any revision session yet.
+                    </p>
+
+                    <p>
+                        Please check again later.
+                    </p>
+
                 </div>
 
-                <div class="value">
-                    {{ session[4] }}
-                </div>
-
-            </div>
-
-
-            <!-- ROOM -->
-
-            <div class="info">
-
-                <div class="label">
-                    Classroom / Room
-                </div>
-
-                <div class="value">
-                    {{ session[5] }}
-                </div>
-
-            </div>
-
-
-            <!-- NOTES -->
-
-            <div class="note">
-
-                📝 <strong>Important:</strong>
-
-                {{ session[6] }}
-
-            </div>
+            {% endif %}
 
         </div>
 
